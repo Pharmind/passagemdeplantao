@@ -5,6 +5,6 @@ export const CCCO_PHARMACY = createPharmacySection(
     'farCCCO',
     'Farmácia CC/CO',
     'fa-heartbeat',
-    'Ex: Pendências do plantão anterior resolvidas. Realizado 15 procedimentos durante o plantão, kits remontados, controlado reposto...'
+    'Ex: Pendências do plantão anterior resolvidas. Realizado 15 procedimentos durante o plantão, kits remontados, controlado reposto...',
+    true // Enable numbering
 );
-

@@ -2,38 +2,38 @@
 
 /* 5. Tab System Styles */
 .tab-container {
-    margin-bottom: 30px;
+    margin-bottom: 25px; /* Reduced margin */
 }
 
 .tab-buttons {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Reduced margin */
     background-color: var(--light-bg);
-    border-radius: 10px;
-    padding: 6px;
-    border: 1px solid var(--border-color);
+    border-radius: 12px; /* More rounded */
+    padding: 5px; /* Reduced padding */
+    border: none; /* Remove border */
     box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     flex-wrap: wrap;
 }
 
 .tab-btn {
     flex: 1;
-    padding: 12px 8px;
+    padding: 10px 8px; /* Reduced padding */
     background: none;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px; /* More rounded */
     cursor: pointer;
     transition: all 0.3s ease;
     color: var(--text-color);
     font-weight: 500;
-    margin: 4px;
-    min-height: 44px; /* Minimum touch target size */
-    flex-basis: calc(50% - 8px);
+    margin: 3px; /* Reduced margin */
+    min-height: 40px; /* Slightly smaller */
+    flex-basis: calc(50% - 6px); /* Adjust calculation */
 }
 
 .tab-btn i {
     transition: transform 0.3s ease;
-    margin-right: 6px;
+    margin-right: 5px; /* Reduced margin */
 }
 
 .tab-btn:hover, .tab-btn:active {

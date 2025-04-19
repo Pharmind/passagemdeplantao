@@ -1,8 +1,8 @@
 // Core functionality and application initialization
 import { setupTabs } from './tabs.js';
-import { setupCheckboxes, setupQuickActions, setupTemplates, setupClearFieldButtons } from './forms.js';
+import { setupCheckboxes, setupQuickActions, setupTemplates, setupClearFieldButtons, setupLineNumbering } from './forms.js';
 import { loadFormData, setupSaveButton, setupClearButton } from './storage.js';
-import { setupPrintButton, updateTimestamp, setupKeyboardShortcuts } from './ui.js';
+import { setupPrintButton, updateTimestamp, setupKeyboardShortcuts, setupThemeToggle } from './ui.js';
 import { setupSmartSuggestions } from './suggestions.js';
 
 export function initializeApp() {
@@ -17,29 +17,31 @@ export function initializeApp() {
         if (dataInput) dataInput.value = today;
         if (dataCAFInput) dataCAFInput.value = today;
         
-        // Initialize all modules with appropriate delays
+        // Initialize all modules
         setupTabs();
         
-        // Set up form controls with slight delays to ensure DOM elements exist
+        setupKeyboardShortcuts();
+
+        setupThemeToggle();
+        
+        // Set up form controls with slight delays
         setTimeout(() => {
             setupCheckboxes();
             setupQuickActions();
             setupTemplates();
             setupClearFieldButtons();
             setupSmartSuggestions();
+            setupLineNumbering();
             
             // Setup action buttons
             setupSaveButton();
             setupPrintButton();
             setupClearButton();
             
-            // Add keypress shortcuts
-            setupKeyboardShortcuts();
-            
-            // Load saved data with a longer delay to ensure DOM is completely ready
+            // Load saved data with a longer delay
             setTimeout(() => {
                 loadFormData();
             }, 500);
         }, 300);
-    }, 500); // Increased delay to ensure DOM is ready
+    }, 500);
 }

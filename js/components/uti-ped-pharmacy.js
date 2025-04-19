@@ -3,7 +3,7 @@ import { createPharmacySection } from './pharmacy-section.js';
 
 export const UTI_PED_PHARMACY = createPharmacySection(
     'farUTIPed',
-    'Farmácia UTI Ped',
+    'Farmácia UTI Ped/Neo',
     'fa-baby',
     'Kits montados, controle de temperatura realizado e controlados repostos. Pendente entregar kits da noite.',
     true // Enable numbering

@@ -123,3 +123,28 @@ export function updateTimestamp() {
     // Show mobile feedback when timestamp is updated
     showMobileSaveFeedback();
 }
+
+export function setupThemeToggle() {
+    const noturnoRadio = document.querySelector('input[name="turno"][value="noturno"]');
+    const diurnoRadio = document.querySelector('input[name="turno"][value="diurno"]');
+
+    if (noturnoRadio) {
+        noturnoRadio.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        });
+    }
+
+    if (diurnoRadio) {
+        diurnoRadio.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.remove('dark-theme');
+            } else {
+                document.body.classList.add('dark-theme');
+            }
+        });
+    }
+}

@@ -276,6 +276,20 @@ export function clearForm() {
         if (diurnoRadio) {
             diurnoRadio.checked = true;
         }
+
+		const modeCompleteRadio = document.getElementById('modeComplete');
+		if (modeCompleteRadio) {
+			modeCompleteRadio.checked = true;
+			const event = new Event('change');
+			modeCompleteRadio.dispatchEvent(event);
+		}
+
+		const modeCompleteCAFRadio = document.getElementById('modeCompleteCAF');
+		if (modeCompleteCAFRadio) {
+			modeCompleteCAFRadio.checked = true;
+			const event = new Event('change');
+			modeCompleteCAFRadio.dispatchEvent(event);
+		}
         
         const textareas = document.querySelectorAll('textarea');
         textareas.forEach(textarea => {

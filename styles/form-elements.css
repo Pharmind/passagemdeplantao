@@ -3,50 +3,52 @@
 /* 4. Form Element Styles */
 h2 {
     color: var(--primary-color);
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-size: 1.4rem;
+    border-bottom: none; 
+    padding-bottom: 0; 
+    margin-bottom: 15px; 
+    font-size: 1.3rem; 
     font-weight: 600;
+    text-align: center; 
 }
 
 .form-section {
-    margin-bottom: 30px;
+    margin-bottom: 25px; 
 }
 
 .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 20px; 
     position: relative;
     transition: all 0.3s ease;
-    background: white;
-    border-radius: 10px;
-    padding: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-    border: 1px solid var(--border-color);
+    background: var(--secondary-color); 
+    border-radius: 12px; 
+    padding: 14px; 
+    box-shadow: 0 3px 8px rgba(0,0,0,0.04); 
+    border: none; 
 }
 
 .form-group:hover, .form-group:focus-within {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    transform: translateY(-3px); 
+    box-shadow: 0 5px 12px rgba(0,0,0,0.08); 
 }
 
 label {
     display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--text-color);
+    font-weight: 500; 
+    margin-bottom: 6px; 
+    color: var(--primary-color); 
+    font-size: 0.95rem; 
 }
 
 input[type="date"] {
-    padding: 12px;
+    padding: 10px; 
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 8px; 
     width: 100%;
     max-width: 200px;
-    font-size: 16px;
+    font-size: 15px; 
     transition: border-color 0.3s, box-shadow 0.3s;
     background-color: white;
-    -webkit-appearance: none; /* Remove default styling on iOS */
+    -webkit-appearance: none; 
 }
 
 input[type="date"]:focus {
@@ -59,22 +61,22 @@ input[type="date"]:focus {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background: white;
-    border-radius: 10px;
-    padding: 16px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 25px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    background: var(--secondary-color); 
+    border-radius: 12px; 
+    padding: 14px; 
+    border: none; 
+    margin-bottom: 20px; 
+    box-shadow: 0 3px 8px rgba(0,0,0,0.04); 
 }
 
 .date-container {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 12px; 
 }
 
 .radio-group {
     display: flex;
-    gap: 10px;
+    gap: 8px; 
     flex-wrap: wrap;
     width: 100%;
 }
@@ -83,12 +85,12 @@ input[type="date"]:focus {
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 10px 18px;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
+    padding: 8px 16px; 
+    background-color: var(--light-bg); 
+    border-radius: 10px; 
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
-    min-height: 44px; /* Minimum touch target size */
+    min-height: 40px; 
 }
 
 .radio-container:hover {
@@ -97,32 +99,33 @@ input[type="date"]:focus {
 }
 
 .radio-container input[type="radio"] {
-    margin-right: 8px;
-    min-width: 18px;
-    min-height: 18px;
+    margin-right: 6px; 
+    min-width: 16px; 
+    min-height: 16px;
 }
 
 .radio-label {
     display: flex;
     align-items: center;
-    font-weight: 500;
+    font-weight: 400; 
+    font-size: 0.9rem; 
 }
 
 .radio-label i {
-    margin-right: 5px;
+    margin-right: 4px; 
 }
 
 textarea {
     width: 100%;
-    padding: 14px;
+    padding: 12px; 
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px; 
     resize: vertical;
-    font-size: 16px;
+    font-size: 15px; 
     font-family: inherit;
     transition: border-color 0.3s, box-shadow 0.3s;
     background-color: white;
-    min-height: 80px; /* Better default height */
+    min-height: 70px; 
 }
 
 textarea:focus {
@@ -134,36 +137,36 @@ textarea:focus {
 textarea::placeholder {
     color: var(--placeholder-color);
     font-style: italic;
-    font-size: 0.9em;
+    font-size: 0.85em; 
 }
 
 .form-actions {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 30px;
+    gap: 8px; 
+    margin-top: 25px; 
     flex-wrap: wrap;
 }
 
 button {
-    padding: 12px 16px;
+    padding: 10px 14px; 
     border: none;
-    border-radius: 8px;
+    border-radius: 10px; 
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px; 
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    min-height: 44px; /* Minimum touch target size */
+    min-height: 40px; 
     width: auto;
     white-space: nowrap;
-    -webkit-appearance: none; /* Remove default styling on iOS */
+    -webkit-appearance: none; 
 }
 
 button i {
-    margin-right: 8px;
+    margin-right: 6px; 
 }
 
 #btnSalvar {
@@ -223,18 +226,18 @@ button:active {
 .quick-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
+    gap: 6px; 
+    margin-bottom: 12px; 
 }
 
 .quick-btn {
-    background-color: var(--secondary-color);
+    background-color: var(--light-bg); 
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 0.9rem;
+    border-radius: 8px; 
+    padding: 6px 10px; 
+    font-size: 0.85rem; 
     transition: all 0.2s;
-    min-height: 38px; /* Better touch target */
+    min-height: 34px; 
 }
 
 .quick-btn:hover, .quick-btn:active {
@@ -250,27 +253,27 @@ button:active {
 .checkbox-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
+    gap: 6px; 
+    margin-bottom: 12px; 
 }
 
 .checkbox-item {
-    background-color: var(--secondary-color);
+    background-color: var(--light-bg); 
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 10px 15px;
+    border-radius: 10px; 
+    padding: 8px 13px; 
     cursor: pointer;
     transition: all 0.2s;
     user-select: none;
     display: flex;
     align-items: center;
-    min-height: 44px; /* Minimum touch target size */
+    min-height: 40px; 
     flex-grow: 1;
-    min-width: 120px;
+    min-width: 110px; 
 }
 
 .checkbox-item i {
-    margin-right: 8px;
+    margin-right: 6px; 
     color: var(--placeholder-color);
     transition: color 0.2s;
 }
@@ -293,7 +296,7 @@ button:active {
 }
 
 .checkbox-item.selected i:before {
-    content: "\f14a"; /* fa-check-square */
+    content: "\f14a"; 
 }
 
 .common-inputs {
@@ -319,28 +322,55 @@ button:active {
 }
 
 .templates-section {
-    margin-bottom: 25px;
+    margin-bottom: 20px; 
     background-color: var(--light-bg);
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 10px; 
+    padding: 12px; 
     border: 1px solid var(--border-color);
 }
 
 .template-selector {
-    padding: 12px;
+    padding: 10px; 
     border-radius: 8px;
     border: 1px solid var(--border-color);
     width: 100%;
-    font-size: 16px;
+    font-size: 15px; 
     color: var(--text-color);
     background-color: white;
     transition: border-color 0.3s, box-shadow 0.3s;
-    min-height: 44px; /* Minimum touch target size */
-    -webkit-appearance: none; /* Remove default styling on iOS */
+    min-height: 40px; 
+    -webkit-appearance: none; 
 }
 
 .template-selector:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
     outline: none;
+}
+
+/* Line numbering button */
+.number-lines-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s;
+    min-height: 34px; 
+}
+
+.number-lines-btn:hover, .number-lines-btn:active {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.number-lines-btn i {
+    margin-right: 5px;
+    color: var(--primary-color);
 }

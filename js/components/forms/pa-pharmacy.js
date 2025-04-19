@@ -5,6 +5,6 @@ export const PA_PHARMACY = createPharmacySection(
     'farPA',
     'Farmácia PA',
     'fa-first-aid',
-    'Ex: kits montados, controlados repostos, controle de temperatura realizado.'
+    'Ex: kits montados, controlados repostos, controle de temperatura realizado.',
+    true // Enable numbering
 );
-

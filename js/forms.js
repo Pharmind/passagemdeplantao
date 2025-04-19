@@ -145,119 +145,186 @@ export function addTextToTextarea(textarea, text) {
     
     // Trigger smart suggestions
     checkAndSuggest(textarea);
+
+    // Apply line numbering
+    numberTextareaLines(textarea);
 }
 
 export function setupTemplates() {
-    // Add delay to ensure elements are loaded
-    setTimeout(() => {
-        const templateSelectors = document.querySelectorAll('.template-selector');
-        
-        if (templateSelectors.length === 0) {
-            console.warn("No template selectors found. Trying again...");
-            setTimeout(setupTemplates, 300);
-            return;
+  // Add delay to ensure elements are loaded
+  setTimeout(() => {
+    const templateSelectors = document.querySelectorAll(".template-selector");
+
+    if (templateSelectors.length === 0) {
+      console.warn("No template selectors found. Trying again...");
+      setTimeout(setupTemplates, 300);
+      return;
+    }
+
+    templateSelectors.forEach((selector) => {
+      selector.addEventListener("change", function () {
+        const value = this.value;
+        if (!value) return;
+
+        const targetId = this.getAttribute("data-target");
+        if (!targetId) return;
+
+        // Handle special case for "allSections"
+        if (targetId === "allSections") {
+          // Apply template to all main textareas
+          const textareas = [
+            "farPA",
+            "farCCCO",
+            "farUTIPed",
+            "farUTIAd",
+            "farCentral",
+          ];
+
+          textareas.forEach((id) => {
+            const textarea = document.getElementById(id);
+            if (textarea) {
+              textarea.value = value;
+              checkAndSuggest(textarea);
+              numberTextareaLines(textarea)
+            } else {
+              console.warn(
+                `Textarea #${id} not found when applying template`
+              );
+            }
+          });
+        } else {
+          // Normal case - apply to specific target
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.value = value;
+            checkAndSuggest(targetElement);
+            numberTextareaLines(targetElement)
+          } else {
+            console.warn(
+              `Target element #${targetId} not found when applying template`
+            );
+          }
         }
-        
-        templateSelectors.forEach(selector => {
-            selector.addEventListener('change', function() {
-                const value = this.value;
-                if (!value) return;
-                
-                const targetId = this.getAttribute('data-target');
-                if (!targetId) return;
-                
-                // Handle special case for "allSections"
-                if (targetId === "allSections") {
-                    // Apply template to all main textareas
-                    const textareas = [
-                        'farPA', 'farCCCO', 'farUTIPed', 'farUTIAd', 'farCentral'
-                    ];
-                    
-                    textareas.forEach(id => {
-                        const textarea = document.getElementById(id);
-                        if (textarea) {
-                            textarea.value = value;
-                            checkAndSuggest(textarea);
-                        } else {
-                            console.warn(`Textarea #${id} not found when applying template`);
-                        }
-                    });
-                } else {
-                    // Normal case - apply to specific target
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        targetElement.value = value;
-                        checkAndSuggest(targetElement);
-                    } else {
-                        console.warn(`Target element #${targetId} not found when applying template`);
-                    }
-                }
-                
-                // Visual feedback
-                selector.style.animation = 'pulse 0.3s ease';
-                setTimeout(() => { selector.style.animation = ''; }, 300);
-                
-                // Reset selector
-                this.value = '';
-            });
-        });
-        
-        console.log("Template selectors setup complete");
-    }, 300);
+
+        // Visual feedback
+        selector.style.animation = "pulse 0.3s ease";
+        setTimeout(() => {
+          selector.style.animation = "";
+        }, 300);
+
+        // Reset selector
+        this.value = "";
+      });
+    });
+
+    console.log("Template selectors setup complete");
+  }, 300);
 }
 
 export function setupClearFieldButtons() {
+  // Add delay to ensure elements are loaded
+  setTimeout(() => {
+    const clearButtons = document.querySelectorAll(".clear-field-btn");
+
+    if (clearButtons.length === 0) {
+      console.warn("No clear field buttons found. Trying again...");
+      setTimeout(setupClearFieldButtons, 300);
+      return;
+    }
+
+    clearButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const fieldId = this.getAttribute("data-clear");
+        if (!fieldId) return;
+
+        const field = document.getElementById(fieldId);
+
+        if (field) {
+          // Visual feedback
+          field.style.transition = "all 0.3s";
+          field.style.backgroundColor = "rgba(230, 55, 87, 0.05)";
+          setTimeout(() => {
+            field.style.backgroundColor = "";
+            field.value = "";
+          }, 200);
+
+          // Also clear any selected checkboxes for this field
+          const checkboxSection = document.querySelector(
+            `[data-checkbox-section="${fieldId}"]`
+          );
+          if (checkboxSection) {
+            const selectedItems = checkboxSection.querySelectorAll(
+              ".checkbox-item.selected"
+            );
+            selectedItems.forEach((item) => {
+              item.classList.remove("selected");
+              // Reset the icon
+              const icon = item.querySelector("i");
+              if (icon) {
+                icon.className = "far fa-square";
+              }
+            });
+          }
+
+          // Clear suggestions
+          const suggestionsElement = document.getElementById(
+            `suggestions-${fieldId}`
+          );
+          if (suggestionsElement) {
+            suggestionsElement.textContent = "";
+          }
+        } else {
+          console.warn(`Field #${fieldId} not found when clearing`);
+        }
+      });
+    });
+
+    console.log("Clear field buttons setup complete");
+  }, 300);
+}
+
+export function numberTextareaLines(textarea) {
+    if (!textarea || !textarea.id || textarea.id === 'observacoesGeraisSat' || textarea.id.includes('exc')) return;
+    
+    const lines = textarea.value.split('\n');
+    const currentCursor = textarea.selectionStart;
+    
+    const numberedLines = lines.map((line, index) => {
+        if (line.trim() === '') return line;
+        return `${index + 1}. ${line.trim()}`;
+    });
+
+    textarea.value = numberedLines.join('\n');
+    textarea.selectionStart = currentCursor;
+    textarea.selectionEnd = currentCursor;
+}
+
+export function setupLineNumbering() {
     // Add delay to ensure elements are loaded
     setTimeout(() => {
-        const clearButtons = document.querySelectorAll('.clear-field-btn');
+        const textareas = document.querySelectorAll('textarea');
         
-        if (clearButtons.length === 0) {
-            console.warn("No clear field buttons found. Trying again...");
-            setTimeout(setupClearFieldButtons, 300);
-            return;
-        }
-        
-        clearButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const fieldId = this.getAttribute('data-clear');
-                if (!fieldId) return;
-                
-                const field = document.getElementById(fieldId);
-                
-                if (field) {
-                    // Visual feedback
-                    field.style.transition = 'all 0.3s';
-                    field.style.backgroundColor = 'rgba(230, 55, 87, 0.05)';
-                    setTimeout(() => { 
-                        field.style.backgroundColor = '';
-                        field.value = '';
-                    }, 200);
-                    
-                    // Also clear any selected checkboxes for this field
-                    const checkboxSection = document.querySelector(`[data-checkbox-section="${fieldId}"]`);
-                    if (checkboxSection) {
-                        const selectedItems = checkboxSection.querySelectorAll('.checkbox-item.selected');
-                        selectedItems.forEach(item => {
-                            item.classList.remove('selected');
-                            // Reset the icon
-                            const icon = item.querySelector('i');
-                            if (icon) {
-                                icon.className = 'far fa-square';
-                            }
-                        });
-                    }
-                    
-                    // Clear suggestions
-                    const suggestionsElement = document.getElementById(`suggestions-${fieldId}`);
-                    if (suggestionsElement) {
-                        suggestionsElement.textContent = '';
-                    }
-                } else {
-                    console.warn(`Field #${fieldId} not found when clearing`);
-                }
+        if (textareas.length === 0) {
+            console.warn("No textareas found. Trying again...");
+            setTimeout(setupLineNumbering, 300);
+            return;       
+   }  
+
+        textareas.forEach(textarea => {
+            // Apply initial numbering
+            numberTextareaLines(textarea);
+            
+            // Setup input event listener
+            textarea.addEventListener('input', function() {
+             numberTextareaLines(this);
+            });
+
+            // Setup blur event for when exiting the field
+            textarea.addEventListener('blur', function() {
+                numberTextareaLines(this);
             });
         });
         
-        console.log("Clear field buttons setup complete");
+        console.log("Line numbering setup complete");
     }, 300);
 }

@@ -189,6 +189,14 @@ export function copyToClipboard() {
     navigator.clipboard.writeText(text)
         .then(() => {
             showCopyFeedback();
+            
+            // Refresh the page after 3 seconds
+            setTimeout(() => {
+                import('./storage.js').then(module => {
+                    module.clearForm();
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+            }, 3000);
         })
         .catch(err => {
             console.error('Failed to copy: ', err);
@@ -203,13 +211,13 @@ function showCopyFeedback() {
     const button = document.getElementById('btnCopiar');
     const originalText = button.innerHTML;
     
-    button.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+    button.innerHTML = '<i class="fas fa-check"></i> Copiado! Redirecionando...';
     button.style.backgroundColor = '#28a745';
     
     setTimeout(() => {
         button.innerHTML = originalText;
         button.style.backgroundColor = '';
-    }, 1500);
+    }, 3000);
 }
 
 /**
